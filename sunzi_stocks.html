@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>孙子兵法·股市战经</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&family=Noto+Sans+SC:wght@300;400&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d0d0d;
+    --paper: #f5efe3;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --red: #9b2335;
+    --deep: #1a1209;
+    --muted: #8a7a5a;
+    --divider: #d4c49a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--deep);
+    color: var(--paper);
+    font-family: 'Noto Serif SC', serif;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 30%, #2a1e0a 0%, #0d0a04 60%, #000 100%);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 80%, rgba(201,168,76,0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(155,35,53,0.06) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .hero-strokes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.06;
+  }
+
+  .hero-strokes svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-badge {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.3s;
+  }
+
+  .hero-title-zh {
+    font-size: clamp(3.5rem, 10vw, 8rem);
+    font-weight: 700;
+    color: var(--paper);
+    line-height: 1;
+    letter-spacing: 0.15em;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.5s;
+  }
+
+  .hero-title-sub {
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    font-weight: 300;
+    color: var(--gold);
+    letter-spacing: 0.5em;
+    margin-top: 1rem;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.7s;
+  }
+
+  .hero-divider {
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 2rem auto;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.9s;
+  }
+
+  .hero-desc {
+    max-width: 600px;
+    font-size: 1rem;
+    line-height: 2;
+    color: rgba(245,239,227,0.65);
+    font-weight: 300;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 1.1s;
+  }
+
+  .hero-toc {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: center;
+    max-width: 700px;
+    margin-top: 3rem;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 1.3s;
+  }
+
+  .hero-toc a {
+    font-size: 0.75rem;
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 0.3rem 0.9rem;
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+  }
+
+  .hero-toc a:hover {
+    background: rgba(201,168,76,0.15);
+    border-color: var(--gold);
+  }
+
+  /* ── INTRO BLOCK ── */
+  .intro {
+    background: var(--paper);
+    color: var(--ink);
+    padding: 5rem 2rem;
+    position: relative;
+  }
+
+  .intro-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.5em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .intro h2 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.4;
+    margin-bottom: 2rem;
+  }
+
+  .intro h2 em {
+    color: var(--red);
+    font-style: normal;
+  }
+
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .intro-card {
+    background: var(--deep);
+    color: var(--paper);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .intro-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--gold);
+  }
+
+  .intro-card h3 {
+    font-size: 1rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    margin-bottom: 1rem;
+  }
+
+  .intro-card p {
+    font-size: 0.9rem;
+    line-height: 1.9;
+    color: rgba(245,239,227,0.75);
+    font-weight: 300;
+  }
+
+  /* ── CHAPTERS ── */
+  .chapters {
+    background: var(--deep);
+    padding: 2rem 0 6rem;
+  }
+
+  .chapter {
+    max-width: 1000px;
+    margin: 0 auto 0;
+    padding: 5rem 2rem;
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+    position: relative;
+  }
+
+  .chapter:last-child { border-bottom: none; }
+
+  .chapter-header {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2rem;
+    align-items: start;
+    margin-bottom: 3rem;
+  }
+
+  .chapter-num {
+    font-family: 'Cinzel', serif;
+    font-size: 4rem;
+    font-weight: 700;
+    color: rgba(201,168,76,0.15);
+    line-height: 1;
+    min-width: 80px;
+    text-align: right;
+  }
+
+  .chapter-titles {
+    border-left: 2px solid var(--gold);
+    padding-left: 1.5rem;
+  }
+
+  .chapter-tag {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .chapter-name {
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    font-weight: 700;
+    color: var(--paper);
+    letter-spacing: 0.15em;
+    line-height: 1.2;
+  }
+
+  .chapter-subtitle {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: 0.4rem;
+    letter-spacing: 0.1em;
+  }
+
+  .chapter-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+
+  .chapter-col h4 {
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .chapter-col p,
+  .chapter-col li {
+    font-size: 0.92rem;
+    line-height: 2;
+    color: rgba(245,239,227,0.75);
+    font-weight: 300;
+  }
+
+  .chapter-col ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .chapter-col ul li {
+    padding-left: 1.2rem;
+    position: relative;
+    margin-bottom: 0.6rem;
+  }
+
+  .chapter-col ul li::before {
+    content: '▸';
+    color: var(--gold);
+    position: absolute;
+    left: 0;
+    font-size: 0.7rem;
+    top: 0.35em;
+  }
+
+  .quote-block {
+    grid-column: 1 / -1;
+    background: rgba(201,168,76,0.05);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 2rem;
+    position: relative;
+    margin-top: 1rem;
+  }
+
+  .quote-block::before {
+    content: '❝';
+    font-size: 3rem;
+    color: rgba(201,168,76,0.2);
+    position: absolute;
+    top: 0.5rem;
+    left: 1rem;
+    line-height: 1;
+  }
+
+  .quote-block .quote-text {
+    font-size: 1rem;
+    color: var(--gold-light);
+    line-height: 2;
+    font-style: italic;
+    padding-left: 1rem;
+  }
+
+  .quote-block .quote-src {
+    font-size: 0.7rem;
+    color: var(--muted);
+    margin-top: 0.8rem;
+    letter-spacing: 0.2em;
+    padding-left: 1rem;
+  }
+
+  .strategy-pills {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .pill {
+    font-size: 0.72rem;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold);
+    padding: 0.3rem 0.9rem;
+    letter-spacing: 0.1em;
+  }
+
+  .pill.red {
+    background: rgba(155,35,53,0.1);
+    border-color: rgba(155,35,53,0.3);
+    color: #e07080;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: #050402;
+    text-align: center;
+    padding: 3rem 2rem;
+    color: var(--muted);
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+  }
+
+  /* ── ANIMS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 680px) {
+    .chapter-body { grid-template-columns: 1fr; }
+    .intro-grid   { grid-template-columns: 1fr; }
+    .chapter-header { grid-template-columns: 1fr; }
+    .chapter-num { font-size: 2.5rem; min-width: auto; text-align: left; }
+    .quote-block { grid-column: 1; }
+    .strategy-pills { grid-column: 1; }
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--deep); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<section class="hero">
+  <div class="hero-strokes">
+    <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+      <path d="M100,400 Q300,200 500,350 T900,300" stroke="#c9a84c" stroke-width="1" fill="none"/>
+      <path d="M0,600 Q200,500 400,580 T800,520 T1200,560" stroke="#c9a84c" stroke-width="0.5" fill="none"/>
+      <circle cx="600" cy="400" r="250" stroke="#c9a84c" stroke-width="0.5" fill="none"/>
+      <circle cx="600" cy="400" r="350" stroke="#c9a84c" stroke-width="0.3" fill="none"/>
+      <line x1="350" y1="150" x2="850" y2="650" stroke="#c9a84c" stroke-width="0.4"/>
+      <line x1="850" y1="150" x2="350" y2="650" stroke="#c9a84c" stroke-width="0.4"/>
+    </svg>
+  </div>
+  <div class="hero-badge">The Art of War · Stock Market Edition</div>
+  <div class="hero-title-zh">孙子兵法</div>
+  <div class="hero-title-sub">·  股 市 战 经  ·</div>
+  <div class="hero-divider"></div>
+  <p class="hero-desc">
+    两千五百年前的军事智慧，穿越时空照见现代资本战场。<br>
+    以十三篇兵法，解构股市的道、势、术、法。
+  </p>
+  <div class="hero-toc">
+    <a href="#c1">始计篇</a><a href="#c2">作战篇</a><a href="#c3">谋攻篇</a>
+    <a href="#c4">军形篇</a><a href="#c5">兵势篇</a><a href="#c6">虚实篇</a>
+    <a href="#c7">军争篇</a><a href="#c8">九变篇</a><a href="#c9">行军篇</a>
+    <a href="#c10">地形篇</a><a href="#c11">九地篇</a><a href="#c12">火攻篇</a>
+    <a href="#c13">用间篇</a>
+  </div>
+</section>
+
+<!-- ══════════════════ INTRO ══════════════════ -->
+<section class="intro">
+  <div class="intro-inner">
+    <div class="section-label">Core Philosophy · 核心思想</div>
+    <h2>股市是没有硝烟的<em>战场</em>，<br>资金是永不停歇的<em>战争</em></h2>
+    <p style="font-size:0.95rem;line-height:2;color:#555;max-width:700px;">
+      《孙子兵法》的本质是：<strong>在不确定性中谋求确定性，在动态对抗中寻找非对称优势。</strong>
+      这与股票投资的本质高度契合——市场永远不可完全预测，但投资者可以通过战略规划、仓位管理、情报收集和心理控制，构建长期优势。
+    </p>
+    <div class="intro-grid">
+      <div class="intro-card">
+        <h3>🎯 兵法五核心 → 投资五要素</h3>
+        <p>
+          <strong style="color:var(--gold)">道</strong> → 投资哲学与价值观<br>
+          <strong style="color:var(--gold)">天</strong> → 市场时机与宏观周期<br>
+          <strong style="color:var(--gold)">地</strong> → 行业赛道与市场结构<br>
+          <strong style="color:var(--gold)">将</strong> → 投资者自身能力圈<br>
+          <strong style="color:var(--gold)">法</strong> → 交易系统与风控纪律
+        </p>
+      </div>
+      <div class="intro-card">
+        <h3>⚔️ 股市对抗的本质</h3>
+        <p>
+          市场是零和博弈的竞技场，每一笔盈利背后都有对手的亏损。机构 vs 散户、多头 vs 空头、价值 vs 成长——如同军事对抗，需要战略思维、战术执行与心理素质三位一体。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ CHAPTERS ══════════════════ -->
+<section class="chapters">
+
+  <!-- 第一篇 -->
+  <div class="chapter" id="c1">
+    <div class="chapter-header">
+      <div class="chapter-num">一</div>
+      <div class="chapter-titles">
+        <div class="chapter-tag">Chapter 01 · Strategic Planning</div>
+        <div class="chapter-name">始 计 篇</div>
+        <div class="chapter-subtitle">讲战略运筹 — 胜负在庙堂，而非战场</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="chapter-col">
+        <h4>兵法原典精义</h4>
+        <p>孙子曰：「兵者，国之大事，死生之地，存亡之道，不可不察也。」始计篇强调战前的庙算——通过道、天、地、将、法五个维度对敌我双方进行全面评估，「多算胜，少算不胜，而况无算乎！」胜负在开战之前便已七八分注定。</p>
+      </div>
+      <div class="chapter-col">
+        <h4>股市投资解析</h4>
+        <ul>
+          <li><strong>投前尽调即庙算：</strong>买入一只股票前，必须完成深度研究：行业格局、竞争壁垒、财务质量、管理层诚信、估值安全边际。「算多者胜」——研究越深入，胜率越高。</li>
+          <li><strong>五维评估框架：</strong>道（商业模式与价值观）、天（行业周期与政策风向）、地（市场空间与竞争格局）、将（管理层能力）、法（公司治理与财务纪律）。</li>
+          <li><strong>建立投资清单：</strong>像将军演练沙盘一样，写下买入理由、预期回报、止损条件，打印放在桌上。买入前逐条核对，拒绝冲动交易。</li>
+          <li><strong>机会成本意识：</strong>「兵非益多」——重仓不代表赚得多，精选3-5只深度研究的标的，优于分散持有20只一知半解的股票。</li>
+        </ul>
+      </div>
+      <div class="quote-block">
+        <div class="quote-text">「夫未战而庙算胜者，得算多也；未战而庙算不胜者，得算少也。」<br>
+        → 在建仓之前，胜负便已在研究的深度与广度中决定。仓促入市者，不过是将本金奉送给有准备的人。</div>
+        <div class="quote-src">《孙子兵法·始计篇》× 投资启示</div>
+      </div>
+      <div class="strategy-pills">
+        <span class="pill">深度基本面研究</span>
+        <span class="pill">五维评估框架</span>
+        <span class="pill">投资逻辑清单</span>
+        <span class="pill">能力圈坚守</span>
+        <span class="pill red">拒绝冲动交易</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 第二篇 -->
+  <div class="chapter" id="c2">
+    <div class="chapter-header">
+      <div class="chapter-num">二</div>
+      <div class="chapter-titles">
+        <div class="chapter-tag">Chapter 02 · Cost of War</div>
+        <div class="chapter-name">作 战 篇</div>
+        <div class="chapter-subtitle">讲战争动员与消耗 — 速战速决与持久战的抉择</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="chapter-col">
+        <h4>兵法原典精义</h4>
+        <p>「兵贵胜，不贵久。」作战篇强调战争的资源消耗，久战则国力衰竭。孙子主张以战养战、速战速决，反对陷入消耗战的泥潭。任何战役都有成本，盲目拖延只会让己方耗尽资源。</p>
+      </div>
+      <div class="chapter-col">
+        <h4>股市投资解析</h4>
+        <ul>
+          <li><strong>交易成本的复利侵蚀：</strong>频繁交易如同久战——手续费、印花税、摩擦成本日积月累，可吞噬年化收益的2%-5%。巴菲特的低换手率正是「速战速决」的另一种表达。</li>
+          <li><strong>深套股票的机会成本：</strong>深度套牢等同于「持久战消耗」——资金被锁死，错过其他优质机会。有时认亏止损、转战更优标的，是更聪明的选择。</li>
+          <li><strong>仓位管理即兵力调配：</strong>不要把所有子弹射向一个目标。预留10%-20%现金，在市场极端恐慌时加仓，如同预备队在关键时刻上阵。</li>
+          <li><strong>「以战养战」的复利思维：</strong>让赚钱的仓位继续增长，用利润再投入，避免过早了结优质持仓。赢家要让它奔跑。</li>
+        </ul>
+      </div>
+      <div class="quote-block">
+        <div class="quote-text">「兵贵胜，不贵久。」<br>
+        → 过度交易是大多数散户亏损的核心原因之一。投资的艺术不在于频繁操作，而在于等待真正的机会，一击必中。</div>
+        <div class="quote-src">《孙子兵法·作战篇》× 投资启示</div>
+      </div>
+      <div class="strategy-pills">
+        <span class="pill">降低换手率</span>
+        <span class="pill">控制交易成本</span>
+        <span class="pill">预留现金弹药</span>
+        <span class="pill">复利再投入</span>
+        <span class="pill red">警惕深套消耗</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 第三篇 -->
+  <div class="chapter" id="c3">
+    <div class="chapter-header">
+      <div class="chapter-num">三</div>
+      <div class="chapter-titles">
+        <div class="chapter-tag">Chapter 03 · Strategic Victory</div>
+        <div class="chapter-name">谋 攻 篇</div>
+        <div class="chapter-subtitle">讲不战而屈人之兵 — 最高境界是不战而胜</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="chapter-col">
+        <h4>兵法原典精义</h4>
+        <p>「上兵伐谋，其次伐交，其次伐兵，其下攻城。」最高明的战略是用谋略瓦解敌人，而非正面厮杀。「知彼知己，百战不殆」是本篇最著名的论断，强调信息优势的决定性作用。</p>
+      </div>
+      <div class="chapter-col">
+        <h4>股市投资解析</h4>
+        <ul>
+          <li><strong>「上兵伐谋」= 逆向投资：</strong>在市场情绪极度恐慌、众人抛售时买入优质资产——不与市场硬拼，而是利用市场先生的非理性为己所用。巴菲特的「别人恐惧我贪婪」即此道。</li>
+          <li><strong>「知彼知己」= 信息优势：</strong>深入研究行业，建立比市场更深的认知护城河。当你比大多数人更了解一家公司时，你的持仓自信度才能承受短期波动的考验。</li>
+          <li><strong>避免与机构正面博弈：</strong>散户硬拼游资与机构的消息面博弈，如同步兵攻城——胜算极低。应转换赛道，寻找机构覆盖度低的小盘价值股或冷门行业。</li>
+          <li><strong>「全胜策略」= 寻找确定性机会：</strong>等待只需要2-3个确定性催化剂同时具备时才出手，而非在模糊局面下强行入市。</li>
+        </ul>
+      </div>
+      <div class="quote-block">
+        <div class="quote-text">「知彼知己，百战不殆；不知彼而知己，一胜一负；不知彼，不知己，每战必殆。」<br>
+        → 研究的深度决定持仓的底气。你对一家公司的了解，必须超越市场的平均认知，才能在波动中不被轻易震出。</div>
+        <div class="quote-src">《孙子兵法·谋攻篇》× 投资启示</div>
+      </div>
+      <div class="strategy-pills">
+        <span class="pill">逆向投资思维</span>
+        <span class="pill">建立认知优势</span>
+        <span class="pill">寻找低覆盖标的</span>
+        <span class="pill">等待确定性机会</span>
+        <span class="pill red">避免与机构硬拼</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 第四篇 -->
+  <div class="chapter" id="c4">
+    <div class="chapter-header">
+      <div class="chapter-num">四</div>
+      <div class="chapter-titles">
+        <div class="chapter-tag">Chapter 04 · Defense & Offense</div>
+        <div class="chapter-name">军 形 篇</div>
+        <div class="chapter-subtitle">讲攻守态势 — 先为不可胜，以待敌之可胜</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="chapter-col">
+        <h4>兵法原典精义</h4>
+        <p>「昔之善战者，先为不可胜，以待敌之可胜。不可胜在己，可胜在敌。」善战者先确保自身不被击败，然后等待敌人犯错的机会。「胜兵先胜而后求战，败兵先战而后求胜。」</p>
+      </div>
+      <div class="chapter-col">
+        <h4>股市投资解析</h4>
+        <ul>
+          <li><strong>风险控制是「先为不可胜」：</strong>投资第一原则：不亏钱；第二原则：不忘第一原则（巴菲特语）。设定严格的止损线、仓位上限、行业集中度限制，确保单次失误不致命。</li>
+          <li><strong>守的核心 = 安全边际：</strong>以低于内在价值30%-50%的价格买入，留足「护城河」，即使判断部分有误，也有足够缓冲。格雷厄姆的安全边际即军形篇的守势。</li>
+          <li><strong>攻的时机 = 市场严重错误定价：</strong>只在市场出现明显错误定价时（黑天鹅事件、行业恐慌、系统性下跌）大举建仓，而非在市场情绪亢奋时追涨。</li>
+          <li><strong>形如积水：</strong>平时保持高现金比例（「守形」），当机会出现时倾泻而下（「攻形」）。核心是耐心——大多数时间不是进攻的时机。</li>
+        </ul>
+      </div>
+      <div class="quote-block">
+        <div class="quote-text">「胜兵先胜而后求战，败兵先战而后求胜。」<br>
+        → 成功的投资者先确保下行有限，再谋求上行空间。失败的投资者先幻想暴富，再事后补做功课——顺序颠倒，注定失败。</div>
+        <div class="quote-src">《孙子兵法·军形篇》× 投资启示</div>
+      </div>
+      <div class="strategy-pills">
+        <span class="pill">安全边际优先</span>
+        <span class="pill">严格止损纪律</span>
+        <span class="pill">仓位集中度控制</span>
+        <span class="pill">等待错误定价</span>
+        <span class="pill red">避免追涨杀跌</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 第五篇 -->
+  <div class="chapter" id="c5">
+    <div class="chapter-header">
+      <div class="chapter-num">五</div>
+      <div class="chapter-titles">
+        <div class="chapter-tag">Chapter 05 · Momentum & Surprise</div>
+        <div class="chapter-name">兵 势 篇</div>
+        <div class="chapter-subtitle">讲奇正变换 — 以正合，以奇胜</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="chapter-col">
+        <h4>兵法原典精义</h4>
+        <p>「凡战者，以正合，以奇胜。」正兵用于正面对抗，奇兵用于出其不意。善用势者，「如转圆石于千仞之山」，顺势而为，势不可挡。关键在于奇正相互转化，变化无穷。</p>
+      </div>
+      <div class="chapter-col">
+        <h4>股市投资解析</h4>
+        <ul>
+          <li><strong>「正兵」= 核心价值投资仓位：</strong>组合的60%-70%配置在基本面扎实、估值合理的蓝筹或价值型标的，提供稳定的基础收益——这是「以正合」。</li>
+          <li><strong>「奇兵」= 非共识成长股或事件驱动：</strong>组合的20%-30%押注市场尚未充分定价的机会——困境反转股、冷门行业龙头、政策预期差——这是「以奇胜」。</li>
+          <li><strong>「势」= 趋势与动量：</strong>识别并顺应市场的主要趋势（产业升级、政策方向、技术革命），不要逆大势而为。「借势」比「造势」更省力。</li>
+          <li><strong>奇正转换 = 灵活调仓：</strong>当昔日冷门股成为市场共识后，其「奇」的属性消失，应逐步减仓，将利润转向下一个非共识机会。</li>
+        </ul>
+      </div>
+      <div class="quote-block">
+        <div class="quote-text">「善战者，求之于势，不责于人，故能择人而任势。」<br>
+        → 优秀的投资者不依赖「选对所有股票」，而是构建正确的宏观战略框架，让趋势和时间为己所用，顺势而为。</div>
+        <div class="quote-src">《孙子兵法·兵势篇》× 投资启示</div>
+      </div>
+      <div class="strategy-pills">
+        <span class="pill">核心 + 卫星仓位结构</span>
+        <span class="pill">非共识机会挖掘</span>
+        <span class="pill">顺势而为</span>
+        <span class="pill">动量策略</span>
+        <span class="pill red">避免逆大势博弈</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 第六篇 -->
+  <div class="chapter" id="c6">
+    <div class="chapter-header">
+      <div class="chapter-num">六</div>
+      <div class="chapter-titles">
+        <div class="chapter-tag">Chapter 06 · Strike the Void</div>
+        <div class="chapter-name">虚 实 篇</div>
+        <div class="chapter-subtitle">讲避实击虚 — 集中优势力量，打击弱点</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="chapter-col">
+        <h4>兵法原典精义</h4>
+        <p>「虚则实之，实则虚之。」「我专而敌分」——集中兵力打击敌人的薄弱处。「兵形象水，水之行避高而趋下，兵之形避实而击虚」——如水一般寻找阻力最小的路径。</p>
+      </div>
+      <div class="chapter-col">
+        <h4>股市投资解析</h4>
+        <ul>
+          <li><strong>「避实击虚」= 寻找市场盲区：</strong>大型机构因规模限制无法布局小市值股票；分析师覆盖度低的行业存在信息真空——这些「虚处」是散户和小型基金的机会所在。</li>
+          <li><strong>「我专敌分」= 集中研究优势：</strong>不要试图覆盖所有行业，深耕1-3个你有认知优势的行业，成为该领域的「专家投资者」，你的信息密度超过市场平均水平。</li>
+          <li><strong>市场「虚实」= 情绪与基本面背离：</strong>当市场情绪极度悲观（虚）而基本面实际在改善（实）时，正是击虚之机。反之，情绪极度亢奋（虚华）而基本面透支（实际空虚）时，应减仓回避。</li>
+          <li><strong>流动性「虚实」：</strong>在市场流动性充裕时（实）适度配置成长股，在流动性收紧时（虚）转向现金流稳定的价值股，随「水形」而变。</li>
+        </ul>
+      </div>
+      <div class="quote-block">
+        <div class="quote-text">「兵形象水，水之行避高而趋下，兵之形避实而击虚。」<br>
+        → 最好的投资机会从不在聚光灯下。当所有人都在追逐热点时，真正的机会已悄悄转移到无人关注的角落。</div>
+        <div class="quote-src">《孙子兵法·虚实篇》× 投资启示</div>
+      </div>
+      <div class="strategy-pills">
+        <span class="pill">挖掘低覆盖标的</span>
+        <span class="pill">行业深耕专注</span>
+        <span class="pill">情绪与基本面背离</span>
+        <span class="pill">流动性周期配置</span>
+        <span class="pill red">远离过热赛道</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 第七篇 -->
+  <div class="chapter" id="c7">
+    <div class="chapter-header">
+      <div class="chapter-num">七</div>
+      <div class="chapter-titles">
+        <div class="chapter-tag">Chapter 07 · Seizing Initiative</div>
+        <div class="chapter-name">军 争 篇</div>
+        <div class="chapter-subtitle">讲夺取先机 — 以迂为直，以患为利</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="chapter-col">
+        <h4>兵法原典精义</h4>
+        <p>「军争之难者，以迂为直，以患为利。」争夺先机是最困难的事——表面看似绕远的路，实则是最快到达目的地的路；表面的困境，实则包含利益。掌握先机者，掌握主动权。</p>
+      </div>
+      <div class="chapter-col">
+        <h4>股市投资解析</h4>
+        <ul>
+          <li><strong>「以迂为直」= 提前布局：</strong>在产业趋势明朗之前提前埋伏——如2020年新能源的布局者，走的是「迂路」，却最先到达财富终点。等趋势人尽皆知时买入，等于慢半拍的迟到者。</li>
+          <li><strong>「以患为利」= 危机是最佳买入点：</strong>每一次黑天鹅、行业政策打压、财报暂时不及预期，对深度研究者而言是买入窗口。2008年金融危机、2020年疫情暴跌——「患」中蕴藏最大的「利」。</li>
+          <li><strong>争夺「定价权」先机：</strong>在市场重新定价之前建仓——当所有人都看到价值时，价值已经被充分反映。争的是「认知差」，不是「事实差」。</li>
+          <li><strong>「旗鼓」= 市场信号判读：</strong>学会读懂成交量异动、北向资金流向、融资余额变化等「战场信号」，在机构悄悄建仓时跟随，而非在公告后追涨。</li>
+        </ul>
+      </div>
+      <div class="quote-block">
+        <div class="quote-text">「故迂其途，而诱之以利，后人发，先人至，此知迂直之计者也。」<br>
+        → 最高明的投资者看起来在走弯路（忍受无聊的等待期），实则比追热点的人更早抵达财富目标。耐心是最被低估的投资边际优势。</div>
+        <div class="quote-src">《孙子兵法·军争篇》× 投资启示</div>
+      </div>
+      <div class="strategy-pills">
+        <span class="pill">提前布局产业趋势</span>
+        <span class="pill">危机中逆向建仓</span>
+        <span class="pill">认知差套利</span>
+        <span class="pill">追踪资金流向信号</span>
+        <span class="pill red">拒绝追涨公告后热点</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 第八篇 -->
+  <div class="chapter" id="c8">
+    <div class="chapter-header">
+      <div class="chapter-num">八</div>
+      <div class="chapter-titles">
+        <div class="chapter-tag">Chapter 08 · Adaptation</div>
+        <div class="chapter-name">九 变 篇</div>
+        <div class="chapter-subtitle">讲临机应变 — 通九变之利，知用兵矣</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="chapter-col">
+        <h4>兵法原典精义</h4>
+        <p>「智者之虑，必杂于利害。」智慧的决策者在考虑有利因素时，也思量不利之处；在面对困境时，也寻找其中的机会。「将有五危」——勇而轻死、必生可虏、忿速可侮、廉洁可辱、爱民可烦——个性缺陷是致命弱点。</p>
+      </div>
+      <div class="chapter-col">
+        <h4>股市投资解析</h4>
+        <ul>
+          <li><strong>「五危」= 投资者的五大性格陷阱：</strong>必死（重仓赌博）、必生（过度保守错失机会）、忿速（情绪化追涨杀跌）、廉洁（死守亏损仓位护尊严）、爱民（听信小道消息）——自我认知是最重要的投资工具。</li>
+          <li><strong>「杂于利害」= 双面思考：</strong>看多时主动思考看空理由；看空时主动寻找可能看错的证据。避免确认偏误——只看支持自己观点的信息。</li>
+          <li><strong>应变能力 = 更新模型的勇气：</strong>当新信息打破原有投资逻辑时，必须快速修正仓位，而非坚守「原有故事」。最危险的是「认知僵化」——拒绝承认逻辑已变。</li>
+          <li><strong>「九变」= 不同市场环境的策略切换：</strong>牛市初期、牛市高峰、熊市初期、熊市底部——四种截然不同的市场状态，对应四套不同的仓位与选股策略。</li>
+        </ul>
+      </div>
+      <div class="quote-block">
+        <div class="quote-text">「将有五危：必死，可杀也；必生，可虏也；忿速，可侮也；廉洁，可辱也；爱民，可烦也。」<br>
+        → 投资者最大的敌人是自己的性格缺陷。过度自信、厌恶亏损、追逐刺激、爱面子死扛——这五种弱点足以摧毁任何再好的投资组合。</div>
+        <div class="quote-src">《孙子兵法·九变篇》× 投资启示</div>
+      </div>
+      <div class="strategy-pills">
+        <span class="pill">克服认知偏误</span>
+        <span class="pill">双面思维训练</span>
+        <span class="pill">市场环境识别</span>
+        <span class="pill">策略动态切换</span>
+        <span class="pill red">克服五大性格陷阱</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 第九篇 -->
+  <div class="chapter" id="c9">
+    <div class="chapter-header">
+      <div class="chapter-num">九</div>
+      <div class="chapter-titles">
+        <div class="chapter-tag">Chapter 09 · Reading the Battlefield</div>
+        <div class="chapter-name">行 军 篇</div>
+        <div class="chapter-subtitle">讲观察敌情 — 见微知著，洞察信号</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="chapter-col">
+        <h4>兵法原典精义</h4>
+        <p>行军篇列举了大量通过观察自然现象和敌军动态来判断形势的方法，核心是「见微知著」——从细节信号中判断大局。「令素行以教其民，则民服；令不素行以教其民，则民不服。」纪律是一切的基础。</p>
+      </div>
+      <div class="chapter-col">
+        <h4>股市投资解析</h4>
+        <ul>
+          <li><strong>「敌情观察」= 市场技术信号解读：</strong>成交量萎缩配合价格横盘（敌军按兵不动）；异常放量突破（敌军发动进攻）；高位成交量骤降（主力悄悄撤退）——每个技术形态都是「兵情」。</li>
+          <li><strong>「草木动」= 高频草根调研：</strong>实地调研产业链、电商销量数据、招聘信息变化、供应链动态——这些「草根信号」往往早于财报半年以上反映企业真实状态。</li>
+          <li><strong>「辞卑而益备」= 管理层话语分析：</strong>财报电话会中管理层措辞谨慎、回避具体指引（辞卑而益备），往往预示业绩下行；措辞自信具体，则是积极信号。</li>
+          <li><strong>严明纪律 = 交易系统的绝对执行：</strong>「令素行」——交易规则在平静时制定，在动荡时必须毫无例外地执行。破例一次，则纪律形同虚设。</li>
+        </ul>
+      </div>
+      <div class="quote-block">
+        <div class="quote-text">「兵非益多也，惟无武进，足以并力料敌，取人而已。」<br>
+        → 投资不在于重仓豪赌，而在于持续积累信息优势、精准判断形势，用最小的风险获取最确定的回报——这才是投资的「兵道」。</div>
+        <div class="quote-src">《孙子兵法·行军篇》× 投资启示</div>
+      </div>
+      <div class="strategy-pills">
+        <span class="pill">量价信号分析</span>
+        <span class="pill">产业链草根调研</span>
+        <span class="pill">管理层话语分析</span>
+        <span class="pill">严格执行交易纪律</span>
+        <span class="pill red">警惕粉饰太平信号</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 第十篇 -->
+  <div class="chapter" id="c10">
+    <div class="chapter-header">
+      <div class="chapter-num">十</div>
+      <div class="chapter-titles">
+        <div class="chapter-tag">Chapter 10 · Terrain Utilization</div>
+        <div class="chapter-name">地 形 篇</div>
+        <div class="chapter-subtitle">讲地形利用 — 知天知地，胜乃不穷</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="chapter-col">
+        <h4>兵法原典精义</h4>
+        <p>孙子将地形分为通、挂、支、隘、险、远六类，并给出不同地形的应对策略。核心在于「知天知地，胜乃不穷」——充分了解战场环境（外部条件）是获胜的前提。「夫地形者，兵之助也。」</p>
+      </div>
+      <div class="chapter-col">
+        <h4>股市投资解析</h4>
+        <ul>
+          <li><strong>六种「市场地形」：</strong>通（流动性充裕的牛市）、挂（高估值进退两难）、支（震荡横盘）、隘（流动性危机窄口）、险（系统性风险区域）、远（长线价值洼地）——不同市场环境对应不同策略。</li>
+          <li><strong>行业「地形」分析：</strong>垄断格局行业（险地易守）vs. 充分竞争行业（通地需快）；政策扶持赛道（顺地而行）vs. 政策打压行业（险地需退）。</li>
+          <li><strong>「通形」策略：</strong>牛市初期，流动性宽松，应适度进攻，扩大仓位，选择弹性较大的成长股。</li>
+          <li><strong>「险形」止损：</strong>进入系统性风险区域（金融危机、流动性危机），如同身处险地，必须断然撤退，保存实力，不恋战。</li>
+          <li><strong>「将之过」= 六种常见投资错误：</strong>走（策略错位）、弛（纪律松弛）、陷（深陷亏损）、崩（组合崩溃）、乱（仓位混乱）、北（认知溃败）。</li>
+        </ul>
+      </div>
+      <div class="quote-block">
+        <div class="quote-text">「知彼知己，胜乃不殆；知天知地，胜乃不穷。」<br>
+        → 优秀的投资者不仅研究公司（知彼知己），更研究宏观经济与市场结构（知天知地）。忽略宏观环境的微观选股，如同优秀士兵迷失在危险地形。</div>
+        <div class="quote-src">《孙子兵法·地形篇》× 投资启示</div>
+      </div>
+      <div class="strategy-pills">
+        <span class="pill">宏观环境判断</span>
+        <span class="pill">行业竞争格局分析</span>
+        <span class="pill">牛熊周期仓位配置</span>
+        <span class="pill">危机环境减仓</span>
+        <span class="pill red">六种投资失败归因</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 第十一篇 -->
+  <div class="chapter" id="c11">
+    <div class="chapter-header">
+      <div class="chapter-num">十一</div>
+      <div class="chapter-titles">
+        <div class="chapter-tag">Chapter 11 · Nine Grounds</div>
+        <div class="chapter-name">九 地 篇</div>
+        <div class="chapter-subtitle">讲地理战略 — 置之死地而后生</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="chapter-col">
+        <h4>兵法原典精义</h4>
+        <p>九地篇是《孙子兵法》中最长的一篇，将战略地理分为散、轻、争、交、衢、重、圮、围、死九种态势。「置之死地而后生」——在绝境中，人才能发挥最大潜能。强调对将士心理的运用与把控。</p>
+      </div>
+      <div class="chapter-col">
+        <h4>股市投资解析</h4>
+        <ul>
+          <li><strong>「死地」= 极度恐慌的市场底部：</strong>2008年、2020年3月、2022年底——这些「死地」正是最佳建仓时机。置之死地的企业往往爆发出惊人的反弹力量（困境反转逻辑）。</li>
+          <li><strong>「围地」= 高度集中的单一持仓风险：</strong>过度集中于单一股票或行业，如同被围困——出路狭窄。「围地则谋」——此时需设计对冲保护或逐步分散。</li>
+          <li><strong>「衢地」= 行业交叉的平台型企业：</strong>掌握流量、数据、平台的科技巨头，如同「四通八达之衢地」——护城河宽阔，值得长期持有。</li>
+          <li><strong>「深入则专，浅入则散」= 仓位大小的心理效应：</strong>重仓持有时，你会更深入研究、更理性应对波动；轻仓时容易随市场情绪买卖——适度集中有助于提高决策质量。</li>
+        </ul>
+      </div>
+      <div class="quote-block">
+        <div class="quote-text">「投之亡地然后存，陷之死地然后生。」<br>
+        → 市场最恐惧的时刻，往往是价值最高、风险反而最低的时刻。敢于在「死地」重仓的投资者，最终往往「绝地逢生」，获取最丰厚的超额回报。</div>
+        <div class="quote-src">《孙子兵法·九地篇》× 投资启示</div>
+      </div>
+      <div class="strategy-pills">
+        <span class="pill">绝地反转机会</span>
+        <span class="pill">困境反转投资</span>
+        <span class="pill">集中持仓心理优势</span>
+        <span class="pill">平台型企业护城河</span>
+        <span class="pill red">警惕「围地」集中风险</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 第十二篇 -->
+  <div class="chapter" id="c12">
+    <div class="chapter-header">
+      <div class="chapter-num">十二</div>
+      <div class="chapter-titles">
+        <div class="chapter-tag">Chapter 12 · Special Offense</div>
+        <div class="chapter-name">火 攻 篇</div>
+        <div class="chapter-subtitle">讲特殊攻击 — 慎战，非利不动</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="chapter-col">
+        <h4>兵法原典精义</h4>
+        <p>火攻篇讲述五种火攻方式（火人、火积、火辎、火库、火队），并给出关键警示：「主不可以怒而兴师，将不可以愠而致战。」不可因情绪冲动而用兵；「非利不动，非得不用，非危不战。」只有在有明确利益时才行动。</p>
+      </div>
+      <div class="chapter-col">
+        <h4>股市投资解析</h4>
+        <ul>
+          <li><strong>「火攻」= 催化剂驱动的进攻策略：</strong>做空暴露财务造假的公司；利用行业重大事件（并购、政策、技术突破）进行事件驱动交易——这些是股市的「火攻战术」，需要精准时机。</li>
+          <li><strong>「主不可以怒而兴师」= 情绪化交易是最大敌人：</strong>因暴跌愤怒而抄底、因账面盈利兴奋而加仓、因他人嘲笑而急于证明——一切情绪化决策都是走向亏损的捷径。</li>
+          <li><strong>「非利不动」= 高标准选股门槛：</strong>设定严格的买入标准——ROE>15%、市盈率合理、护城河清晰、管理层可信——不符合标准坚决不买，宁可空仓等待。</li>
+          <li><strong>「明君慎之，良将警之」= 风控文化：</strong>建立个人投资的「作战纪律手册」，包括买入标准、仓位规则、止损触发条件，并在每次交易后复盘检查是否遵守。</li>
+        </ul>
+      </div>
+      <div class="quote-block">
+        <div class="quote-text">「主不可以怒而兴师，将不可以愠而致战…怒可以复喜，愠可以复悦，亡国不可以复存，死者不可以复生。」<br>
+        → 情绪化交易造成的亏损是不可逆的。暴跌时的恐慌抛售、暴涨时的贪婪追入——每一次情绪化决策，都在慢慢蒸发你的本金和复利时间。</div>
+        <div class="quote-src">《孙子兵法·火攻篇》× 投资启示</div>
+      </div>
+      <div class="strategy-pills">
+        <span class="pill">催化剂事件驱动</span>
+        <span class="pill">严格买入标准</span>
+        <span class="pill">情绪管理</span>
+        <span class="pill">空仓等待能力</span>
+        <span class="pill red">杜绝情绪化交易</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 第十三篇 -->
+  <div class="chapter" id="c13">
+    <div class="chapter-header">
+      <div class="chapter-num">十三</div>
+      <div class="chapter-titles">
+        <div class="chapter-tag">Chapter 13 · Intelligence</div>
+        <div class="chapter-name">用 间 篇</div>
+        <div class="chapter-subtitle">讲情报搜集 — 先知者，不可取于鬼神</div>
+      </div>
+    </div>
+    <div class="chapter-body">
+      <div class="chapter-col">
+        <h4>兵法原典精义</h4>
+        <p>「先知者，不可取于鬼神，不可象于事，不可验于度，必取于人，知敌之情者也。」情报是战争最宝贵的资源，孙子将间谍分为因间、内间、反间、死间、生间五种，视用间为「君之宝，三军之所恃而动也」。</p>
+      </div>
+      <div class="chapter-col">
+        <h4>股市投资解析</h4>
+        <ul>
+          <li><strong>五种「间」= 五类信息来源：</strong>因间（行业内部人士、专家网络）、内间（公司高管离职访谈）、反间（做空报告中的真实信息）、死间（反向指标、极端情绪指数）、生间（实地调研、一线数据）。</li>
+          <li><strong>「先知」= 建立信息优势护城河：</strong>比市场早3-6个月获取行业趋势变化——通过行业协会数据、上游原材料价格、专利申请动态、关键人才流动来构建认知领先优势。</li>
+          <li><strong>「反间计」= 利用做空报告：</strong>做空机构的报告是一种特殊情报——部分是真实的财务问题揭露，部分是配合做空的舆论操纵。学会辨别，从中提取有价值的核查线索。</li>
+          <li><strong>「必取于人」= 构建专家网络：</strong>建立行业专家、供应商、竞争对手、前员工的访谈数据库，这是机构投资者与散户之间最难复制的信息护城河。</li>
+          <li><strong>情报伦理与合规：</strong>「用间」须在法律框架内——内幕信息交易是证券犯罪，专家网络的合规访谈与非法内幕信息之间有清晰边界，必须严守。</li>
+        </ul>
+      </div>
+      <div class="quote-block">
+        <div class="quote-text">「故惟明君贤将，能以上智为间者，必成大功。此兵之要，三军之所恃而动也。」<br>
+        → 最终，投资的竞争是认知的竞争。谁能建立更广泛、更深入、更早期的信息网络，谁就拥有在市场中持续获得超额收益的最坚固护城河。</div>
+        <div class="quote-src">《孙子兵法·用间篇》× 投资启示</div>
+      </div>
+      <div class="strategy-pills">
+        <span class="pill">五类信息源构建</span>
+        <span class="pill">专家网络访谈</span>
+        <span class="pill">草根数据体系</span>
+        <span class="pill">做空报告甄别利用</span>
+        <span class="pill red">严守合规信息边界</span>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ══════════════════ SUMMARY ══════════════════ -->
+<section class="intro" style="background:#1a1209;color:var(--paper);border-top:1px solid rgba(201,168,76,0.15);">
+  <div class="intro-inner">
+    <div class="section-label" style="color:var(--muted)">Final Synthesis · 总纲</div>
+    <h2 style="color:var(--paper);">十三篇兵法的<em style="color:var(--gold)">投资总纲</em></h2>
+    <p style="color:rgba(245,239,227,0.65);font-size:0.95rem;line-height:2;max-width:700px;margin-bottom:2rem;">
+      《孙子兵法》的股市智慧可凝练为三个层次：<strong style="color:var(--gold)">道（战略层）</strong>、<strong style="color:var(--gold)">势（战术层）</strong>、<strong style="color:var(--gold)">术（执行层）</strong>。三者缺一不可，才能构建可持续的投资竞争优势。
+    </p>
+    <div class="intro-grid">
+      <div class="intro-card" style="border-top:3px solid var(--gold);padding-top:1.5rem;">
+        <h3>🏛️ 道 · 战略层</h3>
+        <p>建立清晰的投资哲学（始计）→ 坚守安全边际原则（军形）→ 构建信息优势护城河（用间）→ 克服性格弱点（九变）。<br><br>这是一切盈利的底层基础，不可动摇。</p>
+      </div>
+      <div class="intro-card" style="border-top:3px solid var(--red);padding-top:1.5rem;">
+        <h3>⚡ 势 · 战术层</h3>
+        <p>识别市场地形与周期（地形/九地）→ 顺势配置奇正仓位（兵势）→ 寻找虚实背离的机会（虚实）→ 夺取认知领先先机（军争）。<br><br>在正确的时机、正确的地方，做正确的事。</p>
+      </div>
+      <div class="intro-card" style="border-top:3px solid #5a8a6a;padding-top:1.5rem;grid-column:1/-1;">
+        <h3>🎯 术 · 执行层</h3>
+        <p>控制交易成本与持仓效率（作战）→ 用逆向思维避免市场博弈（谋攻）→ 临机应变更新模型（九变）→ 严格执行纪律、杜绝情绪（火攻/行军）→ 读懂战场信号及时应对（行军）。<br><br>最终决定投资成败的，是数百次交易中纪律执行的一致性。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div>孙子兵法 · 股市战经 &nbsp;|&nbsp; 知彼知己，百战不殆</div>
+  <div style="margin-top:0.5rem;font-size:0.7rem;opacity:0.5;">本文仅供投资思维方法论参考，不构成具体投资建议</div>
+</footer>
+
+</body>
+</html>
